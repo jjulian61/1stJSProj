@@ -36,3 +36,13 @@ ul {
     justify-content: space-between;
     align-items: center;
 }
+
+.user-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.user-card__container {
+}
