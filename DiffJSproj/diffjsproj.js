@@ -13,16 +13,16 @@ async function main() {
     resultsList.innerHTML = ''; 
     results.forEach(item => {
       const listItem = document.createElement('li');
-      listItem.textContent = ${user.Title}; 
+      `listItem.textContent = ${user.Title};`
       resultsList.appendChild(listItem);
     });
   }
 
   // Handle search input
-  searchtitle.addEventListener('input', function() {
+  searchtitle.addEventListener('h3', function() {
     const searchTerm = searchtitle.value.toLowerCase();
     const filteredResults = allData.filter(item =>
-      ${user.Title}.toLowerCase().includes(searchTerm)
+      `${user.Title}.toLowerCase().includes(searchTerm)`
     );
     displayResults(filteredResults);
   });
