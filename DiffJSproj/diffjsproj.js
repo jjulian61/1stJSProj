@@ -8,24 +8,7 @@ async function main() {
     const moviesdata = await movies.json();
     const userlitEl = document.querySelector(".user-list");
 
-  // Display search results
-  function displayResults(results) {
-    resultsList.innerHTML = ''; 
-    results.forEach(item => {
-      const listItem = document.createElement('li');
-      `listItem.textContent = ${user.Title};`
-      resultsList.appendChild(listItem);
-    });
-  }
-
-  // Handle search input
-  searchtitle.addEventListener('h3', function() {
-    const searchTerm = searchtitle.value.toLowerCase();
-    const filteredResults = allData.filter(item =>
-      `${user.Title}.toLowerCase().includes(searchTerm)`
-    );
-    displayResults(filteredResults);
-  });
+  
 
 
 
