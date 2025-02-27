@@ -4,9 +4,15 @@ let moviedata = [];
 
 //Fetch data from API
 async function main() {
-    const movies = await fetch("https://www.omdbapi.com/?apikey=6c0f2b1f&s=good");
+    const movies = await fetch(`https://www.omdbapi.com/?apikey=6c0f2b1f&s=${title}`);
     const moviesdata = await movies.json();
     const userlitEl = document.querySelector(".user-list");
+
+    searchtitle.addEventListener ("input", (event) => {
+      const searchTerm = event.target.input;
+      console.log("Input changed:", searchTerm);
+      // Perform actions based on input change
+  });
 
   
 
