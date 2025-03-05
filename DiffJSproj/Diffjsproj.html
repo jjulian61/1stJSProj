@@ -20,16 +20,21 @@
           <li><i class="fa-solid fa-ticket"></i></li>
         </div>
         <ul>
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Find a Movie</a></li>
-          <li><a href="mailto:jjulian61@gmail.com">Contact</a></li>
+          <li><a class="home" href="#">Home</a></li>
+          <li><a class="find__movie" href="#">Find a Movie</a></li>
+          <li><a class="contact__j" href="mailto:jjulian61@gmail.com">Contact</a></li>
         </ul>
       </nav>
     </header>
+    <div class="search__parameters">
     <h1>Find a Movie</h1>
     <div class="title__parameters">
-      <label for="">Title:</label>
+      <label class="title__word" for="">Title:</label>
       <input id="filtertitle" type="text" />
+      <select name="" id="filtertype">
+        <option value="Movie">Movie</option>
+        <option value="Series">Series</option>
+      </select>
       <button onclick="main()">Search</button>
     </div>
     <div class="container">
@@ -49,5 +54,6 @@
         </div>
       </div>
     </div>
+  </div>
   </body>
 </html>

@@ -1,7 +1,5 @@
 const searchtitle = document.getElementById('search__title'); 
 const searchbar = document.getElementById('filtertitle');
-const searchyear = document.getElementById('search__year')
-const yearbar = document.getElementById('filteryear')
 let moviedata = [];
 
 //Fetch data from API
@@ -18,6 +16,14 @@ async function main() {
 
       
   });
+
+  if (filtertype === 'Movie') {
+    movies.sort((a, b) => a.movie - b.movie)
+}
+
+else if (filtertype === 'Series') {
+  movies.sort((a, b) => a.series - b.series)
+}
 
   
 

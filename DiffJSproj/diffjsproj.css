@@ -11,9 +11,25 @@ html {
     scroll-behavior: smooth;
 }
 
-nav {
-   
-  }
+body {
+    background-image: url(https://png.pngtree.com/thumb_back/fh260/background/20230703/pngtree-3d-rendered-movie-theatre-with-white-screen-image_3732826.jpg);
+}
+
+li {
+    color: white;
+}
+
+h1 {
+    color: white;
+}
+
+h3 {
+    color: white;
+}
+
+p {
+    color: white;
+}
 
 
 li {
@@ -46,3 +62,33 @@ ul {
 
 .user-card__container {
 }
+
+.search__parameters {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.title__word {
+font-size: 20px;
+color: white;
+font-weight: 1000;
+}
+
+.home {
+    color: white;
+}
+
+.find__movie {
+    color: white;
+}
+
+.contact__j {
+    color: white;
+}
+
+.search__title {
+    color: white;
+}
+
