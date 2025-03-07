@@ -1,55 +1,214 @@
-const searchtitle = document.getElementById('search__title'); 
-const searchbar = document.getElementById('filtertitle');
+const searchtitle = document.getElementById("search__title");
+
+const searchbar = document.getElementById("filtertitle");
+
+const filtertype = document.getElementById("filtertype");
+
 let moviedata = [];
 
-//Fetch data from API
+
+
+// Fetch data from API
+
 async function main() {
-  const title = document.getElementById("filtertitle").value
-    const movies = await fetch(`https://www.omdbapi.com/?apikey=6c0f2b1f&s=${title}`);
-    const moviesdata = await movies.json();
-    const userlitEl = document.querySelector(".user-list");
 
-    searchtitle.addEventListener ("input", (event) => {
-      const searchTerm = event.target.input;
-      console.log("Input changed:", searchTerm);
-      // Perform actions based on input change
+const title = document.getElementById("filtertitle").value;
 
-      
-  });
+if (!title) {
 
-  if (filtertype === 'Movie') {
-    movies.sort((a, b) => a.movie - b.movie)
+alert("Please enter a movie or series title");
+
+return;
+
+ }
+
+
+
+try {
+
+// Show loading state
+
+const userlitEl = document.querySelector(".user-list");
+
+userlitEl.innerHTML = '<div class="loading">Loading...</div>';
+
+
+
+// Fetch data from API
+
+const movies = await fetch(
+
+https://www.omdbapi.com/?apikey=6c0f2b1f&s=${title}
+
+ );
+
+const moviesdata = await movies.json();
+
+
+
+// Check if we got valid results
+
+if (moviesdata.Response === "False") {
+
+userlitEl.innerHTML = <div class="error">No results found for "${title}"</div>;
+
+return;
+
+ }
+
+
+
+// Store data globally for filtering
+
+moviedata = moviesdata.Search;
+
+
+
+// Apply type filter if needed
+
+const selectedType = filtertype.value;
+
+let filteredData = moviedata;
+
+
+
+if (selectedType === "Movie" || selectedType === "Series") {
+
+filteredData = moviedata.filter(
+
+ (item) => item.Type.toLowerCase() === selectedType.toLowerCase()
+
+ );
+
+ }
+
+
+
+// Display results
+
+displayResults(filteredData);
+
+ } catch (error) {
+
+console.error("Error fetching data:", error);
+
+const userlitEl = document.querySelector(".user-list");
+
+userlitEl.innerHTML =
+
+'<div class="error">Error fetching data. Please try again.</div>';
+
+ }
+
 }
 
-else if (filtertype === 'Series') {
-  movies.sort((a, b) => a.series - b.series)
+
+
+// Function to display results
+
+function displayResults(data) {
+
+const userlitEl = document.querySelector(".user-list");
+
+
+
+if (data.length === 0) {
+
+userlitEl.innerHTML =
+
+'<div class="no-results">No matching results found</div>';
+
+return;
+
+ }
+
+
+
+userlitEl.innerHTML = data
+
+ .map(
+
+ (user) =>
+
+`<div class="user-card">
+
+ <div class="user-card__container">
+
+ <h3>${user.Title}</h3>
+
+ <p><b>Year:</b> ${user.Year}</p>
+
+ <p><b>IMDB ID:</b> ${user.imdbID}</p>
+
+ <p><b>Type:</b> ${user.Type}</p>
+
+ <img src="${
+
+user.Poster === "N/A" ? "placeholder.jpg" : user.Poster
+
+}" alt="${user.Title}">
+
+ </div>
+
+ </div>`
+
+ )
+
+ .join("");
+
 }
 
-  
+
+
+// Add event listener for filter type changes
+
+filtertype.addEventListener("change", () => {
+
+if (moviedata.length > 0) {
+
+const selectedType = filtertype.value;
+
+let filteredData = moviedata;
 
 
 
+if (selectedType === "Movie" || selectedType === "Series") {
 
-    
-    
+filteredData = moviedata.filter(
 
-    
+ (item) => item.Type.toLowerCase() === selectedType.toLowerCase()
 
-    userlitEl.innerHTML = moviesdata.Search.map((user) =>
-    `<div class="user-card">
-              <div class="user-card__container">
-                <h3 id="search__title">${user.Title}</h4>
-                  <p id="search__year"><b>Year:</b> ${user.Year}</p>
-                  <p id="search__id"><b>IMDB ID:</b> ${user.imdbID}</p>
-                  <p id="search__type"><b>Type:</b> ${user.Type}</p>
-                  <img src="${user.Poster}" alt="">
-              </div>
-    </div>`)
-    .join("");
+ );
 
-}
+ }
+
+
+
+displayResults(filteredData);
+
+ }
+
+});
+
+
+
+// Add event listener for search input (optional real-time search)
+
+searchbar.addEventListener("keypress", (event) => {
+
+if (event.key === "Enter") {
 
 main();
+
+ }
+
+});
+
+
+
+// Don't automatically call main() - let user initiate the search
+
+// main();
 
 
 
