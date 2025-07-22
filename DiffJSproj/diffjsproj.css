@@ -24,15 +24,16 @@ li {
 }
 
 h1 {
-    color: white;
+    color: black;
 }
 
 h3 {
-    color: black;
+    color: grey;
+    
 }
 
 p {
-    color: black;
+    color: grey;
 }
 
 
@@ -64,7 +65,8 @@ ul {
     align-items: center;
 }
 
-.user-card__container {
+.user-card {
+    width: 31%;
 }
 
 .search__parameters {
